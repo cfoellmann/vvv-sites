@@ -1,4 +1,13 @@
 # Provision WordPress trunk via develop.svn and build.svn
+echo -e "\n\n "
+echo -e "\n================================"
+echo -e "\n Provision WordPress Develop "
+echo -e "\n================================"
+
+# Constants
+DIR="$(dirname $SITE_CONFIG_FILE)"
+DESTDIR="/srv/www/wordpress-develop"
+LOGDIR="/srv/log/local.wordpress.dev"
 
 # Make a database, if we don't already have one
 echo -e "\n Creating databases 'wordpress_develop' & 'wordpress_unit_tests' (if it's not already there)"

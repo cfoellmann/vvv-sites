@@ -29,8 +29,10 @@ fi
 # Checkout, install and configure WordPress trunk via core.svn
 if [[ ! -d $DESTDIR ]]; then
 	echo -e "\nChecking out WordPress trunk from core.svn, see http://core.svn.wordpress.org/trunk"
+
 	svn checkout http://core.svn.wordpress.org/trunk/ $DESTDIR
 	cd $DESTDIR
+
 	echo -e "\nConfiguring WordPress trunk..."
 	wp core config --dbname=wordpress_trunk --dbuser=wp --dbpass=wp --quiet --extra-php --allow-root <<PHP
 define( 'WP_DEBUG', true );
@@ -45,7 +47,7 @@ else
 	echo -e "\nUpdating WordPress trunk..."
 
 	cd $DESTDIR
-	svn up --ignore-externals
+	svn up
 
 	echo -e "\n\n "
 	echo -e "\n\033[33;32m...WordPress trunk updated.\033[0m"
