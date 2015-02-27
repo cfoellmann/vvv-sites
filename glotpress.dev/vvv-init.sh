@@ -12,7 +12,9 @@ LOGDIR="/srv/log/glotpress.dev"
 # Make a database, if we don't already have one
 echo -e "\n Creating database 'glotpress' (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS glotpress"
+mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS glotpress_test"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON glotpress.* TO gp@localhost IDENTIFIED BY 'gp';"
+mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON glotpress_test.* TO gp@localhost IDENTIFIED BY 'gp';"
 echo -e "\n DB operations done.\n\n"
 
 # Nginx logs
@@ -32,10 +34,14 @@ if [ ! -d $DESTDIR ]; then
 	echo "Checking out GlotPress SVN..."
 
 	svn checkout http://glotpress.svn.wordpress.org/trunk/ $DESTDIR
-	cp $DESTDIR/gp-config-sample.php $DESTDIR/gp-config.php
 
+	cp $DESTDIR/gp-config-sample.php $DESTDIR/gp-config.php
 	sed -i 's/username/gp/g' $DESTDIR/gp-config.php
 	sed -i 's/password/gp/g' $DESTDIR/gp-config.php
+
+	cp htdocs/t/unittests-config-sample.php htdocs/t/unittests-config.php
+	sed -i 's/username/gp/g' htdocs/gp-config.php
+	sed -i 's/password/gp/g' htdocs/gp-config.php
 
 	echo -e "\n\n "
 	echo -e "\n\033[33;32m...GlotPress SVN installed.\033[0m"
