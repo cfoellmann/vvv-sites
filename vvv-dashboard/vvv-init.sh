@@ -7,7 +7,6 @@ echo -e "\n================================== "
 # Constants
 DESTDIR="/srv/www/default"
 
-# Install pimpmylog via Composer
 if [[ ! -f /srv/www/dashboard-custom.php ]]; then
 	echo -e "\nInstalling vvv-dashboard..."
 	echo -e "\n\n "
@@ -16,7 +15,7 @@ else
 	echo -e "\n\n "
 fi
 
-# Copy over required files
+# Download files
 cd $DESTDIR
 wget https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/index.php --output-document=dashboard-custom.php --progress=bar:force
 wget https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/style.css --output-document=style.css --progress=bar:force
