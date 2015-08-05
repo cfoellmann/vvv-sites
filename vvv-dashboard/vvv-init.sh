@@ -16,9 +16,11 @@ else
 fi
 
 # Download files
-cd $DESTDIR
-wget https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/index.php --output-document=dashboard-custom.php --progress=bar:force
-wget https://raw.githubusercontent.com/topdown/VVV-Dashboard/master/style.css --output-document=style.css --progress=bar:force
+cd /tmp
+wget https://github.com/topdown/VVV-Dashboard/archive/master.tar.gz
+tar -xf master.tar.gz
+mv VVV-Dashboard-master $DESTDIR/vvv-dashboard
+mv $DESTDIR/vvv-dashboard/dashboard-custom.php $DESTDIR/dashboard-custom.php
 
 echo -e "\n\n "
 echo -e "\n\033[33;32m...vvv-dashboard installed/updated.\033[0m"
